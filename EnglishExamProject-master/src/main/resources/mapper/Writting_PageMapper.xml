@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.Writting_PageMapper">
+    <resultMap id="Writting_PageResult" type="Writting_Page">
+        <result property="writting_pageId" column="writting_pageId"/>
+        <result property="writting_pageName" column="writting_pageName"/>
+        <result property="writting_pageSummary" column="writting_pageSummary"/>
+        <result property="writting_pageType" column="writting_pageType"/>
+    </resultMap>
+    <select id="getAllWritting_Page" parameterType="Map" resultMap="Writting_PageResult">
+        SELECT * FROM writting_page limit #{start},#{pageSize}
+    </select>
+    <select id="getTotalWritting_Page" parameterType="Map" resultType="long">
+        select count(*) from writting_page
+    </select>
+    <select id="getWritting_PageByType" parameterType="Writting_Page" resultMap="Writting_PageResult">
+        SELECT * FROM writting_page WHERE writting_pageType=#{writting_pageType}
+    </select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.Translate_PageMapper">
+    <resultMap id="Translate_PageResult" type="Translate_Page">
+        <result property="translate_pageId" column="translate_pageId"/>
+        <result property="translate_pageName" column="translate_pageName"/>
+        <result property="translate_pageSummary" column="translate_pageSummary"/>
+        <result property="translate_pageType" column="translate_pageType"/>
+    </resultMap>
+    <select id="getAllTranslate_Page" parameterType="Map" resultMap="Translate_PageResult">
+        SELECT * FROM translate_page limit #{start},#{pageSize}
+    </select>
+    <select id="getTotalTranslate_Page" parameterType="Map" resultType="long">
+        select count(*) from translate_page
+    </select>
+    <select id="getTranslate_PageByType" parameterType="Translate_Page" resultMap="Translate_PageResult">
+        SELECT * FROM translate_page WHERE translate_pageType=#{translate_pageType}
+    </select>
+</mapper>

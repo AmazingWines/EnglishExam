@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.ListenMapper">
+    <resultMap type="Listen" id="listenResult">
+        <result property="listenId" column="listenId"/>
+        <result property="listenType" column="listenType"/>
+        <result property="listenSelect_1" column="listenSelect_1"/>
+        <result property="listenSelect_2" column="listenSelect_2"/>
+        <result property="listenSelect_3" column="listenSelect_3"/>
+        <result property="listenSelect_4" column="listenSelect_4"/>
+        <result property="listenCorrect" column="listenCorrect"/>
+        <result property="listen_pageId" column="listen_pageId"/>
+        <result property="mark" column="mark"/>
+        <association property="listen_page" column="listen_pageId" select="hstc.edu.cn.mapper.Listen_PageMapper.findListenPageById">
+        </association>
+    </resultMap>
+    <!--查询所有的听力材料-->
+    <select id="getAllListenData" parameterType="Map" resultMap="listenResult">
+        SELECT * FROM listen  WHERE listen_pageId = #{listen_pageId} limit #{start},#{pageSize}
+    </select>
+    <select id="getListenTotal" parameterType="Map" resultType="long">
+        select count(*) from listen  WHERE listen_pageId = #{listen_pageId} AND listen_pageId = #{listen_pageId}
+    </select>
+    <!--获取单个Listen-->
+    <select id="getListenDataById" parameterType="Listen" resultMap="listenResult">
+        SELECT * FROM listen WHERE listen_pageId = #{listen_pageId}
+    </select>
+    <!--插入Listen-->
+    <insert id="addListen" parameterType="Listen" keyProperty="listenId" useGeneratedKeys="true">
+        INSERT INTO listen VALUES (NULL,#{listenType},#{listenSelect_1},#{listenSelect_2},#{listenSelect_3},#{listenSelect_4},#{listenCorrect},#{listen_pageId},#{mark})
+    </insert>
+    <!--更新Listen-->
+    <update id="updateListen" parameterType="Listen">
+        UPDATE listen SET listenType=#{listenType},listenSelect_1=#{listenSelect_1},listenSelect_2=#{listenSelect_2},listenSelect_3=#{listenSelect_3},listenSelect_4=#{listenSelect_4},
+        listenCorrect=#{listenCorrect},listen_pageId = #{listen_pageId},mark = #{mark} WHERE listenId=#{listenId}
+    </update>
+
+
+
+
+
+
+
+
+</mapper>

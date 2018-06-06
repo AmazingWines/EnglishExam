@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.WordMapper">
+    <resultMap type="Word" id="WordResult">
+        <result property="wordId" column="wordId"/>
+        <result property="wordTitle" column="wordTitle"/>
+        <result property="word_select1" column="word_select1"/>
+        <result property="word_select2" column="word_select2"/>
+        <result property="word_select3" column="word_select3"/>
+        <result property="word_select4" column="word_select4"/>
+        <result property="word_select5" column="word_select5"/>
+        <result property="word_select6" column="word_select6"/>
+        <result property="word_select7" column="word_select7"/>
+        <result property="word_select8" column="word_select8"/>
+        <result property="word_select9" column="word_select9"/>
+        <result property="word_select10" column="word_select10"/>
+        <result property="word_select11" column="word_select11"/>
+        <result property="word_select12" column="word_select12"/>
+        <result property="word_select13" column="word_select13"/>
+        <result property="word_select14" column="word_select14"/>
+        <result property="word_select15" column="word_select15"/>
+        <result property="word_pageId" column="word_pageId"/>
+    </resultMap>
+    <select id="getAllWordData" parameterType="Map" resultMap="WordResult">
+        SELECT * FROM `word`  WHERE word_pageId = #{word_pageId} limit #{start},#{pageSize}
+    </select>
+    <select id="getWordTotal" parameterType="Map" resultType="long">
+        select count(*) from `word`  WHERE word_pageId = #{word_pageId}
+    </select>
+    <select id="getWordDataById" parameterType="Read" resultMap="WordResult">
+        SELECT * FROM `word` WHERE word_pageId = #{word_pageId}
+    </select>
+</mapper>

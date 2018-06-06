@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.TranslateDoMapper">
+    <resultMap type="TranslateDo" id="TranslateDoResult">
+        <result property="translatedoId" column="translatedoId"/>
+        <result property="translateWrite" column="translateWrite"/>
+        <result property="translate_pageId" column="translate_pageId"/>
+        <result property="userId" column="userId"/>
+    </resultMap>
+    <select id="getTranslateDo" parameterType="TranslateDo" resultMap="TranslateDoResult">
+        SELECT * FROM translatedo where translate_pageId = #{translate_pageId} and userId = #{userId}
+    </select>
+    <insert id="addTranslateDo" parameterType="TranslateDo" keyProperty="translatedoId" useGeneratedKeys="true">
+        INSERT INTO translatedo VALUES (NULL,#{translateWrite},#{translate_pageId},#{userId})
+    </insert>
+    <update id="updateTranslateDo" parameterType="TranslateDo">
+        UPDATE translatedo set translateWrite = #{translateWrite} WHERE  translate_pageId = #{translate_pageId} and userId = #{userId}
+    </update>
+</mapper>

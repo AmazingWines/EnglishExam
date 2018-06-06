@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.WordCorrectMapper">
+    <resultMap id="WordCorrectResult" type="WordCorrect">
+        <result property="wordCorrectId" column="wordCorrectId"/>
+        <result property="wordCorrectNum" column="wordCorrectNum"/>
+        <result property="wordCorrect" column="wordCorrect"/>
+        <result property="word_pageId" column="word_pageId"/>
+    </resultMap>
+
+    <select id="getWordCorrect" parameterType="WordCorrect" resultMap="WordCorrectResult">
+        SELECT * FROM wordCorrect WHERE word_pageId = #{word_pageId}
+    </select>
+</mapper>

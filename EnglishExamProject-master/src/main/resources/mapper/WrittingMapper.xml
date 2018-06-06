@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.WrittingMapper">
+    <resultMap type="Writting" id="WrittingResult">
+        <result property="writtingId" column="writtingId"/>
+        <result property="writtingTitle" column="writtingTitle"/>
+        <result property="writtingCorrectTitle" column="writtingCorrectTitle"/>
+        <result property="writtingCorrect" column="writtingCorrect"/>
+        <result property="writting_pageId" column="writting_pageId"/>
+        <result property="writting_mark" column="writting_mark"/>
+    </resultMap>
+    <select id="getWrittingByPageId" parameterType="Writting" resultMap="WrittingResult">
+        SELECT * FROM `writting`  WHERE writting_pageId = #{writting_pageId}
+    </select>
+</mapper>

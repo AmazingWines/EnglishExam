@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.Read_PageMapper">
+    <resultMap id="Read_PageResult" type="Read_Page">
+        <result property="read_pageId" column="read_pageId"/>
+        <result property="read_pageName" column="read_pageName"/>
+        <result property="read_pageSummary" column="read_pageSummary"/>
+        <result property="read_pageType" column="read_pageType"/>
+    </resultMap>
+    <select id="getAllRead_Page" parameterType="Map" resultMap="Read_PageResult">
+        SELECT * FROM read_page limit #{start},#{pageSize}
+    </select>
+    <select id="getTotalRead_Page" parameterType="Map" resultType="long">
+        select count(*) from read_page
+    </select>
+    <select id="getRead_PageByType" parameterType="Read_Page" resultMap="Read_PageResult">
+        SELECT * FROM read_page WHERE read_pageType=#{read_pageType}
+    </select>
+</mapper>

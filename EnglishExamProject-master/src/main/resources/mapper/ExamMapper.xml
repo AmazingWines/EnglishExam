@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.ExamMapper">
+    <resultMap type="Exam" id="ExamResult">
+        <result property="examId" column="examId"/>
+        <result property="writting_pageId" column="writting_pageId"/>
+        <result property="listen_pageId" column="listen_pageId"/>
+        <result property="word_pageId" column="word_pageId"/>
+        <result property="read_pageId" column="read_pageId"/>
+        <result property="translate_pageId" column="translate_pageId"/>
+    </resultMap>
+    <select id="getExamData" parameterType="int" resultMap="ExamResult">
+        SELECT * FROM `exam` WHERE examId = #{examId}
+    </select>
+</mapper>

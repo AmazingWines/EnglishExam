@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.ReadMapper">
+    <resultMap type="Read" id="ReadResult">
+        <result property="readId" column="readId"/>
+        <result property="readNum" column="readNum"/>
+        <result property="readQuestion" column="readQuestion"/>
+        <result property="readSelect_1" column="readSelect_1"/>
+        <result property="readSelect_2" column="readSelect_2"/>
+        <result property="readSelect_3" column="readSelect_3"/>
+        <result property="readSelect_4" column="readSelect_4"/>
+        <result property="readCorrect" column="readCorrect"/>
+        <result property="read_pageId" column="read_pageId"/>
+        <result property="read_mark" column="read_mark"/>
+    </resultMap>
+
+    <select id="getAllReadData" parameterType="Map" resultMap="ReadResult">
+        SELECT * FROM `read`  WHERE read_pageId = #{read_pageId} limit #{start},#{pageSize}
+    </select>
+    <select id="getReadTotal" parameterType="Map" resultType="long">
+        select count(*) from `read`  WHERE read_pageId = #{read_pageId}
+    </select>
+    <select id="getReadDataById" parameterType="Read" resultMap="ReadResult">
+        SELECT * FROM `read` WHERE read_pageId = #{read_pageId}
+    </select>
+</mapper>

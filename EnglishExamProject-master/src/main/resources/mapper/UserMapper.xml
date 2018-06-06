@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.UserMapper">
+    <resultMap type="User" id="userResult">
+        <result property="userId" column="userId"/>
+        <result property="userName" column="userName"/>
+        <result property="userPassword" column="userPassword"/>
+        <result property="userPermission" column="userPermission"/>
+        <result property="userQQ" column="userQQ"/>
+        <result property="userTel" column="userTel"/>
+        <result property="userEmail" column="userEmail"/>
+        <result property="userLandAmount" column="userLandAmount"/>
+        <result property="userLastLandTime" column="userLastLandTime"/>
+    </resultMap>
+    <!--通过用户名获取用户信息-->
+    <select id="getByUsername" parameterType="String" resultMap="userResult">
+        SELECT * FROM User WHERE userName=#{userName}
+    </select>
+    <!--查询用户邮箱-->
+    <select id="getUserEmail" parameterType="User" resultMap="userResult">
+        SELECT * FROM User WHERE userEmail=#{userEmail}
+    </select>
+    <!--通过id获取用户信息-->
+    <select id="getUserData" parameterType="User" resultMap="userResult">
+        SELECT * FROM User WHERE userId=#{userId}
+    </select>
+    <!--添加用户-->
+    <insert id="addUser" parameterType="User" keyProperty="userId" useGeneratedKeys="true">
+        INSERT INTO User VALUES (NULL,#{userName},#{userPassword},2,#{userQQ},#{userTel},#{userEmail},NULL,NULL)
+    </insert>
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="User">
+        UPDATE User SET userPassword=#{userPassword},userQQ=#{userQQ},userTel=#{userTel} WHERE userId=#{userId}
+    </update>
+    <!--更新用户登录权限-->
+    <update id="updatePermission" parameterType="Integer">
+        UPDATE User SET userPermission=#{userPermission} WHERE userId =#{userId}
+    </update>
+    <!--更新登录次数和最后一次登录时间-->
+    <update id="updateUserLand" parameterType="User">
+        UPDATE User SET userLandAmount = #{userLandAmount} AND userLastLandTime = #{userLastLandTime}
+    </update>
+</mapper>

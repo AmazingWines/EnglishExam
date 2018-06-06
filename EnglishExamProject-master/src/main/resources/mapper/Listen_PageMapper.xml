@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.Listen_PageMapper">
+    <resultMap id="Listen_PageResult" type="Listen_page">
+        <result property="listen_pageId" column="listen_pageId"/>
+        <result property="listen_pageName" column="listen_pageName"/>
+        <result property="listen_summary" column="listen_summary"/>
+        <result property="listenUrl" column="listenUrl"/>
+    </resultMap>
+    <select id="listListen_Page" parameterType="Map" resultMap="Listen_PageResult">
+        SELECT * FROM listen_page limit #{start},#{pageSize}
+    </select>
+    <select id="getTotalListen_Page" parameterType="Map" resultType="long">
+        select count(*) from listen_page
+    </select>
+    <select id="findListenPageById" parameterType="int" resultMap="Listen_PageResult">
+        SELECT * FROM listen_page WHERE listen_pageId=#{listen_pageId}
+    </select>
+    <insert id="addListenPage" parameterType="Listen_page" keyProperty="listenId" useGeneratedKeys="true">
+        INSERT INTO listen_page VALUES (NULL,#{listen_pageName},#{listen_summary},#{listenUrl},#{listen_pageType})
+    </insert>
+</mapper>

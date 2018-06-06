@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.WrittingDoMapper">
+    <resultMap type="WrittingDo" id="WrittingDoResult">
+        <result property="writtingdoId" column="writtingdoId"/>
+        <result property="writtingdoTitle" column="writtingdoTitle"/>
+        <result property="writtingdoWrite" column="writtingdoWrite"/>
+        <result property="writting_pageId" column="writting_pageId"/>
+        <result property="userId" column="userId"/>
+    </resultMap>
+    <select id="getWrittingDo" parameterType="WrittingDo" resultMap="WrittingDoResult">
+        SELECT * FROM writtingdo where writting_pageId = #{writting_pageId} AND userId = #{userId}
+    </select>
+    <insert id="addWrittingDo" parameterType="WrittingDo" keyProperty="writting_pageId" useGeneratedKeys="true">
+        INSERT INTO writtingdo VALUES (NULL,#{writtingdoTitle},#{writtingdoWrite},#{writting_pageId},#{userId})
+    </insert>
+    <update id="updateWrittingDo" parameterType="WrittingDo">
+        UPDATE writtingdo set writtingdoTitle = #{writtingdoTitle} ,writtingdoWrite = #{writtingdoWrite} WHERE  writting_pageId = #{writting_pageId} and userId = #{userId}
+    </update>
+</mapper>

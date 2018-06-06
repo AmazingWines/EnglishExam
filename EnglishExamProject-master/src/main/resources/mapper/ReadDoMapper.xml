@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.ReadDoMapper">
+    <resultMap type="ReadDo" id="ReadDoResult">
+        <result property="readdoId" column="readdoId"/>
+        <result property="readdoNum" column="readdoNum"/>
+        <result property="readdoSelect" column="readdoSelect"/>
+        <result property="read_pageId" column="read_pageId"/>
+        <result property="userId" column="userId"/>
+    </resultMap>
+    <select id="getAllReadDoData" parameterType="ReadDo" resultMap="ReadDoResult">
+        SELECT * FROM readdo WHERE read_pageId = #{read_pageId} and userId = #{userId}
+    </select>
+    <select id="getReadDoData" parameterType="ReadDo" resultMap="ReadDoResult">
+        SELECT * FROM readdo where readdoNum = #{readdoNum} and read_pageId = #{read_pageId} and userId = #{userId}
+    </select>
+    <insert id="addReadDo" parameterType="ReadDo" keyProperty="listenId" useGeneratedKeys="true">
+        INSERT INTO readdo VALUES (NULL,#{readdoNum},#{readdoSelect},#{read_pageId},#{userId})
+    </insert>
+    <update id="updateReadDo" parameterType="ReadDo">
+        UPDATE readdo set readdoSelect = #{readdoSelect} WHERE readdoNum = #{readdoNum} and read_pageId = #{read_pageId} and userId = #{userId}
+    </update>
+</mapper>

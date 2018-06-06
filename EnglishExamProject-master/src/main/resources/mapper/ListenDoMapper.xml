@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.ListenDoMapper">
+    <resultMap type="ListenDo" id="listenDoResult">
+        <result property="listendoId" column="listendoId"/>
+        <result property="listen_pageId" column="listen_pageId"/>
+        <result property="listenType" column="listenType"/>
+        <result property="doselect" column="doselect"/>
+        <result property="userId" column="userId"/>
+    </resultMap>
+    <select id="getAllListenDoData" parameterType="ListenDo" resultMap="listenDoResult">
+        SELECT * FROM listendo WHERE  listen_pageId = #{listen_pageId} and userId = #{userId}
+    </select>
+    <select id="getListenDoData" parameterType="ListenDo" resultMap="listenDoResult">
+        SELECT * FROM listendo where listenType = #{listenType} and listen_pageId = #{listen_pageId} and userId = #{userId}
+    </select>
+    <insert id="addListenDo" parameterType="ListenDo" keyProperty="listenId" useGeneratedKeys="true">
+        INSERT INTO listendo VALUES (NULL,#{listenType},#{listen_pageId},#{doselect},#{userId})
+    </insert>
+    <select id="getFullmark" resultType="int">
+         SELECT  SUM(mark) FROM listendo
+    </select>
+    <update id="updateListenDo" parameterType="ListenDo">
+        UPDATE listendo set doselect = #{doselect} WHERE listenType = #{listenType} and listen_pageId = #{listen_pageId} and userId = #{userId}
+    </update>
+</mapper>

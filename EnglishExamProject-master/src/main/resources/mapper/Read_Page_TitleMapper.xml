@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.Read_Page_TitleMapper">
+    <resultMap id="Read_Page_TitleResult" type="Read_Page_Title">
+        <result property="readTitleId" column="readTitleId"/>
+        <result property="readTitleNum" column="readTitleNum"/>
+        <result property="readTitle" column="readTitle"/>
+        <result property="read_pageId" column="read_pageId"/>
+    </resultMap>
+    <select id="getRead_Page_TitleByType" parameterType="int" resultMap="Read_Page_TitleResult">
+        SELECT * FROM read_page_title WHERE read_pageId=#{read_pageId}
+    </select>
+</mapper>

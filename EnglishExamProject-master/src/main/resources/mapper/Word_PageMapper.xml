@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.Word_PageMapper">
+    <resultMap id="Word_PageResult" type="Word_Page">
+        <result property="word_pageId" column="word_pageId"/>
+        <result property="word_pageName" column="word_pageName"/>
+        <result property="word_pageSummary" column="word_pageSummary"/>
+        <result property="word_Type" column="word_Type"/>
+    </resultMap>
+
+    <select id="getAllWord_Page" parameterType="Map" resultMap="Word_PageResult">
+        SELECT * FROM word_page limit #{start},#{pageSize}
+    </select>
+    <select id="getTotalWord_Page" parameterType="Map" resultType="long">
+        select count(*) from word_page
+    </select>
+    <select id="getWord_PageByType" parameterType="Word_Page" resultMap="Word_PageResult">
+        SELECT * FROM word_page WHERE word_Type=#{word_Type}
+    </select>
+</mapper>

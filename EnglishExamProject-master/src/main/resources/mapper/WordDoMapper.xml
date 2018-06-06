@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hstc.edu.cn.mapper.WordDoMapper">
+    <resultMap type="WordDo" id="WordDoResult">
+        <result property="worddoId" column="worddoId"/>
+        <result property="worddoNum" column="worddoNum"/>
+        <result property="wordSelect" column="wordSelect"/>
+        <result property="word_pageId" column="word_pageId"/>
+        <result property="userId" column="userId"/>
+    </resultMap>
+    <select id="getAllWordDoData" parameterType="WordDo" resultMap="WordDoResult">
+        SELECT * FROM worddo WHERE word_pageId = #{word_pageId} and userId = #{userId}
+    </select>
+    <select id="getWordDoData" parameterType="WordDo" resultMap="WordDoResult">
+        SELECT * FROM worddo where worddoNum = #{worddoNum} and word_pageId = #{word_pageId} and userId = #{userId}
+    </select>
+    <insert id="addWordDo" parameterType="WordDo" keyProperty="worddoId" useGeneratedKeys="true">
+        INSERT INTO worddo VALUES (NULL,#{worddoNum},#{wordSelect},#{word_pageId},#{userId})
+    </insert>
+    <update id="updateWordDo" parameterType="WordDo">
+        UPDATE worddo set wordSelect = #{wordSelect} WHERE worddoNum = #{worddoNum} and word_pageId = #{word_pageId} and userId = #{userId}
+    </update>
+</mapper>
